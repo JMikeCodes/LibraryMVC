@@ -1,0 +1,30 @@
+﻿@model AddEditBookViewModel
+<h1>Add Book</h1>
+
+@using (Html.BeginForm("AddBook", "Books")){
+    @Html.HiddenFor(m => m.Book.Id)
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Book.Title, new { @class="form-label" })
+        @Html.TextBoxFor(m => m.Book.Title, new{ @class="form-control", @placeholder="Enter a Title" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Book.ISBN, new { @class="form-label" })
+        @Html.TextBoxFor(m => m.Book.ISBN, new{ @class="form-control", @placeholder="Enter ISBN" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Book.Year, new { @class="form-label" })
+        @Html.TextBoxFor(m => m.Book.Year, new{ @class="form-control", @placeholder="Enter a Year" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Book.Author, new { @class="form-label" })
+        @Html.DropDownListFor(m => m.Book.Author.Id, Model?.Authors ?? new List<SelectListItem>(), new{ @class="form-select" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Book.Genre, new { @class="form-label" })
+        @Html.DropDownListFor(m => m.Book.Genre, Model?.Genres ?? new List<SelectListItem>(), new{ @class="form-select" })
+    </div>
+    <div class="mb-3">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a class="btn btn-danger" asp-area="" asp-controller="Books" asp-action="Index">Cancel</a>
+    </div>
+}
